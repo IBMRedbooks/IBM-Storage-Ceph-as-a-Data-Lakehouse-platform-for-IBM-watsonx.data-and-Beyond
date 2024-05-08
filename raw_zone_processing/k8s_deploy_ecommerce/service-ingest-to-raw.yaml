@@ -1,0 +1,45 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ingest-to-raw-ecommerce
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/target: "1"
+    spec:
+      containers:
+      - name: e-commerce-data-processing
+        image: quay.io/dparkes/ingest_to_raw_ecommerce
+        env:
+        - name: SOURCE_ROLE_ARN
+          value: "arn:aws:iam::123456789012:role/example-source"
+        - name: DESTINATION_ROLE_ARN
+          value: "arn:aws:iam::123456789012:role/example-destination"
+        - name: OIDC_PROVIDER_URL
+          value: "https://your_oidc_provider_url/auth/realms/your_realm/protocol/openid-connect"
+        - name: OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: e-commerce-secrets
+              key: oidc_client_secret
+        - name: OIDC_CLIENT_ID
+          value: "your_oidc_client_id"
+        - name: OIDC_USERNAME
+          value: "your_oidc_username"
+        - name: OIDC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: e-commerce-secrets
+              key: oidc_password
+        - name: S3_ENDPOINT_URL
+          value: "https://your_s3_endpoint_url"
+        - name: STS_ENDPOINT_URL
+          value: "https://your_sts_endpoint_url"
+        - name: AWS_DEFAULT_REGION
+          value: "default"
+        - name: DESTINATION_BUCKET
+          value: "your_destination_bucket_name"
+        - name: CIDR_RANGES
+          value: "10.0.0.0/24|192.168.0.0/16"
+

@@ -1,0 +1,33 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: ingest-to-raw
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/target: "1"
+        revisionTimestamp: ""
+    spec:
+      containers:
+      - name: ingest-to-raw
+        image: quay.io/dparkes/ingest_to_raw:latest
+        env:
+        - name: SOURCE_ROLE_ARN
+          value: "arn:aws:iam:::role/example"
+        - name: DESTINATION_ROLE_ARN
+          value: "arn:aws:iam:::role/example"
+        - name: OIDC_PROVIDER_URL
+          value: "https://URL/auth/realms/ceph/protocol/openid-connect"
+        - name: OIDC_CLIENT_SECRET
+          value: "Secret_Example"
+        - name: OIDC_CLIENT_ID
+          value: "OIDC_CLIENT"
+        - name: OIDC_USERNAME
+          value: "user"
+        - name: OIDC_PASSWORD
+          value: "example_pass"
+        - name: S3_ENDPOINT_URL
+          value: "https://S3_URL"
+        - name: STS_ENDPOINT_URL
+          value: "https://STS_URL"

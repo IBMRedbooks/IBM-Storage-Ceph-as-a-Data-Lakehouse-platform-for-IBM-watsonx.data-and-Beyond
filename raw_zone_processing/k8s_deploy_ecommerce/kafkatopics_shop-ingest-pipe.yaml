@@ -1,0 +1,12 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaTopic
+metadata:
+  name: shop-ingest-pipe-ecommerce
+  namespace: kafka
+spec:
+  config:
+    retention.ms: "110000"
+    segment.bytes: "1073741824"
+  partitions: 10
+  replicas: 3
+  topicName: shop-ingest-pipe-ecommerce

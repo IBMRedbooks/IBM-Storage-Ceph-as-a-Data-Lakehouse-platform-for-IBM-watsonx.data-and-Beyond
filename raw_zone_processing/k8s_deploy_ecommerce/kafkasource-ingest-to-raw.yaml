@@ -1,0 +1,15 @@
+apiVersion: sources.knative.dev/v1beta1
+kind: KafkaSource
+metadata:
+  name: ingest-to-raw
+spec:
+  consumerGroup: ingest-to-raw-ecommerce
+  bootstrapServers:
+    - <bootstrap_ur>l:9092
+  topics:
+    - shop-ingest-pipe-ecommerce
+  sink:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: ingest-to-raw-ecommerce

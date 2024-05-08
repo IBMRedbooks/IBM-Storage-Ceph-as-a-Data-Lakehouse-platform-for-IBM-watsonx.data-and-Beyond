@@ -1,0 +1,9 @@
+FROM registry.access.redhat.com/ubi8/python-39:1-24
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt process_ingest_to_raw.py  ./
+
+RUN pip install -r requirements.txt
+
+CMD ["python3", "-u", "/usr/src/app/process_ingest_to_raw.py"]

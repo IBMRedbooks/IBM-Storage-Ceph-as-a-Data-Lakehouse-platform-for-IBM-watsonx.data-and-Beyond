@@ -1,0 +1,21 @@
+$ podman run  -d -p 8088:8088 -e SUPERSET_SECRET_KEY="oh-so-secret" --name superset apache/superset
+$ superset fab create-admin
+$ superset db upgrade
+$ superset superset init
+
+Connect through browser to host IP, https://HOSTIP:8088 , use the admin user/password created previously
+
+Connect Superset to WXD presto Database, Connection string:
+
+presto://cpadmin:XXXXXXXXXX@ibm-lh-lakehouse-presto-01-presto-svc-cpd-operands.ocp-eu-redbook-ce869a544b369f1dfd24beec10027762-i000.eu-es.containers.appdomain.cloud:443/ecommerce_broswer_logs
+
+Required configuration for https, in advanced features of the presto connector configuration
+
+Security, Security Extra:
+   {
+     "connect_args":
+    {"protocol": "https",
+     "requests_kwargs":{"verify":false}
+  }
+}
+

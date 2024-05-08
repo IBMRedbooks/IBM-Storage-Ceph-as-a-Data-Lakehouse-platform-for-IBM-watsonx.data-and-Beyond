@@ -1,0 +1,10 @@
+{
+"Rules": [ 
+    {
+         "ApplyServerSideEncryptionByDefault": { 
+              "KMSMasterKeyID": "rgw00dc42a9b000000000",
+              "SSEAlgorithm": "aws:kms"
+                            }
+         }
+   ]      
+}

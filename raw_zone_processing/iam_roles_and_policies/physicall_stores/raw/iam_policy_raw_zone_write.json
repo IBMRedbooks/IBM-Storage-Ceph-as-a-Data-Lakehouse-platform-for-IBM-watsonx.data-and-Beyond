@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:ListBucket",
+        "s3:Get*",
+        "s3:PutObjectTagging",
+        "s3:PutObjectLegalHold"
+      ],
+      "Resource": [
+      "arn:aws:s3:::anonymized/*",
+      "arn:aws:s3:::anonymized",
+      "arn:aws:s3:::anonymized/",
+      "arn:aws:s3:::confidential/*",
+      "arn:aws:s3:::confidential",
+      "arn:aws:s3:::confidential/"
+      ]
+    }
+  ]
+}

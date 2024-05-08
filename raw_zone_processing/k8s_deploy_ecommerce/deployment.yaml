@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: e-commerce-data-processing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: e-commerce-data-processing
+  template:
+    metadata:
+      labels:
+        app: e-commerce-data-processing
+    spec:
+      containers:
+      - name: e-commerce-data-processing
+        image: quay.io/dparkes/ingest_to_raw_ecommerce
+        env:
+        - name: SOURCE_ROLE_ARN
+          value: "<your_source_role_arn>"
+        - name: DESTINATION_ROLE_ARN
+          value: "<your_destination_role_arn>"
+        - name: OIDC_PROVIDER_URL
+          value: "<your_OIDC_provider_URL>"
+        - name: OIDC_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: e-commerce-secrets
+              key: oidc_client_secret
+        - name: OIDC_CLIENT_ID
+          value: "<your_OIDC_client_ID>"
+        - name: OIDC_USERNAME
+          value: "<your_OIDC_username>"
+        - name: OIDC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: e-commerce-secrets
+              key: oidc_password
+        - name: S3_ENDPOINT_URL
+          value: "<your_S3_endpoint_URL>"
+        - name: STS_ENDPOINT_URL
+          value: "<your_STS_endpoint_URL>"
+        - name: AWS_DEFAULT_REGION
+          value: "<your_AWS_region>"
+        - name: DESTINATION_BUCKET
+          value: "<your_destination_bucket>"
+        - name: CIDR_RANGES
+          value: "<your_CIDR_ranges>"

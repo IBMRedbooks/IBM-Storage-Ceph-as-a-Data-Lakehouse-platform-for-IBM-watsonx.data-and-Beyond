@@ -1,0 +1,11 @@
+{
+  "TopicConfigurations": [
+    {
+      "Id": "ingestnotificationknative",
+      "TopicArn": "arn:aws:sns:default::shop-ingest-pipe",
+      "Events": [
+        "s3:ObjectCreated:*"
+      ]
+    }
+  ]
+}

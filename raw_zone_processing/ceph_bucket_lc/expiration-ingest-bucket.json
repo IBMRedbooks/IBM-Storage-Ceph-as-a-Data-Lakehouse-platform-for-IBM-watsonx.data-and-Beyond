@@ -1,0 +1,18 @@
+{
+  "Rules": [
+    {
+      "ID": "Delete objects that are older than 24 hours",
+      "Filter": {
+        "Tag": {
+          "Key": "processed",
+          "Value": "true"
+       }
+      },
+      "Prefix": "",
+      "Status": "Enabled",
+      "Expiration": {
+        "Days": 1
+      }
+    }
+   ]
+}

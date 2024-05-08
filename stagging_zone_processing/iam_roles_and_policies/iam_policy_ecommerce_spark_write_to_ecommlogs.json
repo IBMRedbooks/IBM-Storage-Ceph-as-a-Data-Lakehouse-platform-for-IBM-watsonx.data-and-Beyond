@@ -1,0 +1,23 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObjectTagging",
+        "s3:Get*",
+        "s3:Delete*",
+        "s3:Put*",
+        "s3:ListBucket",
+        "s3:ListBucketMultipartUploads",
+        "s3:PutObjectTagging",
+        "s3:AbortMultipartUpload"
+      ],
+      "Resource": [
+      "arn:aws:s3:::ecommlogs/*",
+      "arn:aws:s3:::ecommlogs",
+      "arn:aws:s3:::ecommlogs/"
+      ]
+    }
+  ]
+}

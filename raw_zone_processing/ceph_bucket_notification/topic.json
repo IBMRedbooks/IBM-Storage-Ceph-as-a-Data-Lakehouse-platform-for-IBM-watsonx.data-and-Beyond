@@ -1,0 +1,7 @@
+{
+ "push-endpoint": "kafka://<kafka bootstrap endpoint>",
+ "verify-ssl": "False",
+ "kafka-ack-level": "broker",
+ "persistent": "true",
+ "time_to_live": "90"
+}

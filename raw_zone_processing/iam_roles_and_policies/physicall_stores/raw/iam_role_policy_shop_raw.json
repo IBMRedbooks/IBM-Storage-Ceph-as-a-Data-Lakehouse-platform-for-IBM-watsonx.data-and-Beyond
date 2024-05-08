@@ -1,0 +1,22 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": [
+          "arn:aws:iam:::oidc-provider/keycloak-sso.ocp-eu-redbook-ce869a544b369f1dfd24beec10027762-i000.eu-es.containers.appdomain.cloud/auth/realms/ceph"
+        ]
+      },
+      "Action": [
+        "sts:AssumeRoleWithWebIdentity"
+      ],
+      "Condition": {
+        "StringLike": {
+          "keycloak-sso.ocp-eu-redbook-ce869a544b369f1dfd24beec10027762-i000.eu-es.containers.appdomain.cloud/auth/realms/ceph:groups": "rawzoneadmin"
+        }
+      }
+    }
+  ]
+}
+

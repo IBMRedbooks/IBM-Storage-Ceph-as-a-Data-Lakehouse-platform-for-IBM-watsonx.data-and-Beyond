@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:ListBucket",
+        "s3:PutObjectTagging"
+      ],
+      "Resource": [
+      "arn:aws:s3:::ingest/*",
+      "arn:aws:s3:::ingest",
+      "arn:aws:s3:::ingest/"
+      ]
+    }
+  ]
+}
